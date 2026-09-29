@@ -14,7 +14,7 @@ on:
 
 jobs:
   build:
-    runs-on: macos-15
+    runs-on: macos-26
     timeout-minutes: 60
     defaults:
       run:
@@ -34,9 +34,13 @@ jobs:
           fi
           case "$EXPO_PUBLIC_API_URL" in https://*) ;; *) echo "::error::EXPO_PUBLIC_API_URL debe ser https://"; exit 1;; esac
 
+      # Expo SDK 57 (expo-modules-jsi) no compila con Xcode 26.3: hace falta uno más nuevo.
       - uses: maxim-lobanov/setup-xcode@v1
         with:
           xcode-version: latest-stable
+
+      - name: Versión de Xcode
+        run: xcodebuild -version && ls -d /Applications/Xcode*.app
 
       - uses: actions/setup-node@v4
         with:
@@ -66,16 +70,22 @@ jobs:
             CODE_SIGNING_ALLOWED=NO \
             CODE_SIGNING_REQUIRED=NO \
             CODE_SIGN_IDENTITY="" \
-            build | tee xcodebuild.log | grep -E "error:|warning: .*deprecated|\*\* BUILD" || true
-          test -d build/Build/Products/Release-iphoneos/*.app
+            build > xcodebuild.log 2>&1 || { grep -E "error:" xcodebuild.log | head -40; tail -20 xcodebuild.log; exit 1; }
+          grep -E "\*\* BUILD" xcodebuild.log
 
       - name: Empaquetar .ipa
         run: |
           APP=$(ls -d build/Build/Products/Release-iphoneos/*.app | head -1)
+          # Comprobar que el .app está completo (binario y bundle JS), no un esqueleto de un build fallido.
+          BIN="$APP/$(/usr/libexec/PlistBuddy -c 'Print :CFBundleExecutable' "$APP/Info.plist")"
+          test -f "$BIN" || { echo "::error::Falta el ejecutable en $APP"; exit 1; }
+          test -f "$APP/main.jsbundle" || { echo "::error::Falta main.jsbundle en $APP"; exit 1; }
           mkdir -p out/Payload
           cp -R "$APP" out/Payload/
           cd out && zip -qry ../AR-Infra-Lite-unsigned.ipa Payload
           ls -lh ../AR-Infra-Lite-unsigned.ipa
+          SIZE=$(stat -f%z ../AR-Infra-Lite-unsigned.ipa)
+          [ "$SIZE" -gt 5000000 ] || { echo "::error::El .ipa pesa solo $SIZE bytes"; exit 1; }
 
       - uses: actions/upload-artifact@v4
         with:

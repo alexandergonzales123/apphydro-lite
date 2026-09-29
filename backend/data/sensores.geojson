@@ -1,0 +1,191 @@
+{
+ "type": "FeatureCollection",
+ "name": "sensores",
+ "features": [
+  {
+   "type": "Feature",
+   "properties": {
+    "codigo": "SEN-001",
+    "tipo": "sensor",
+    "estado": "activo",
+    "profundidad_m": 0.4,
+    "atributos": {
+     "marca": "Siemens",
+     "variable": "presion"
+    }
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -77.0300541,
+     -12.0462731
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "codigo": "SEN-002",
+    "tipo": "sensor",
+    "estado": "activo",
+    "profundidad_m": 0.6,
+    "atributos": {
+     "variable": "caudal"
+    }
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -77.0302102,
+     -12.0462281
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "codigo": "SEN-003",
+    "tipo": "sensor",
+    "estado": "inactivo",
+    "profundidad_m": 1.0,
+    "atributos": {}
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -77.0299163,
+     -12.0464347
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "codigo": "SEN-004",
+    "tipo": "valvula",
+    "estado": "activo",
+    "profundidad_m": 1.2,
+    "atributos": {
+     "diametro_mm": 110
+    }
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -77.0303756,
+     -12.0465246
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "codigo": "SEN-005",
+    "tipo": "sensor",
+    "estado": "mantenimiento",
+    "profundidad_m": 0.5,
+    "atributos": {
+     "variable": "nivel"
+    }
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -77.0297326,
+     -12.0462102
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "codigo": "SEN-006",
+    "tipo": "hidrante",
+    "estado": "activo",
+    "profundidad_m": null,
+    "atributos": {}
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -77.0301,
+     -12.0467042
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "codigo": "SEN-007",
+    "tipo": "sensor",
+    "estado": "activo",
+    "profundidad_m": 0.8,
+    "atributos": {
+     "variable": "presion"
+    }
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -77.0295489,
+     -12.045761
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "codigo": "SEN-008",
+    "tipo": "medidor",
+    "estado": "activo",
+    "profundidad_m": 0.3,
+    "atributos": {
+     "serie": "MD-7781"
+    }
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -77.0309267,
+     -12.0461203
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "codigo": "SEN-009",
+    "tipo": "sensor",
+    "estado": "inactivo",
+    "profundidad_m": null,
+    "atributos": {}
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -77.0289978,
+     -12.0466593
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "codigo": "SEN-010",
+    "tipo": "valvula",
+    "estado": "activo",
+    "profundidad_m": 1.5,
+    "atributos": {
+     "diametro_mm": 200
+    }
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -77.0314778,
+     -12.0474678
+    ]
+   }
+  }
+ ]
+}

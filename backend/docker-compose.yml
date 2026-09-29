@@ -1,0 +1,52 @@
+services:
+  db:
+    image: postgis/postgis:16-3.4
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-infra}
+      POSTGRES_USER: ${POSTGRES_USER:-infra}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-infra}
+    ports:
+      # Sólo accesible desde esta máquina. POSTGRES_HOST_PORT permite otro puerto del host
+      # si 5432 ya está ocupado (p. ej. un PostgreSQL nativo de Windows).
+      - "127.0.0.1:${POSTGRES_HOST_PORT:-5432}:5432"
+    volumes:
+      - ./db/init.sql:/docker-entrypoint-initdb.d/10-init.sql:ro
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 3s
+      timeout: 3s
+      retries: 30
+
+  api:
+    build: ./api
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-infra}:${POSTGRES_PASSWORD:-infra}@db:5432/${POSTGRES_DB:-infra}
+      API_KEY: ${API_KEY:-dev-key-cambiar}   # con ENV=production la API no arranca con este valor
+      ENV: ${ENV:-development}
+      ENABLE_DOCS: ${ENABLE_DOCS:-1}           # /docs, /redoc, /openapi.json (desactivar fuera de dev)
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  loader:
+    image: ghcr.io/osgeo/gdal:alpine-small-latest
+    profiles: ["loader"]
+    environment:
+      PGHOST: db
+      PGPORT: "5432"
+      PGDATABASE: ${POSTGRES_DB:-infra}
+      PGUSER: ${POSTGRES_USER:-infra}
+      PGPASSWORD: ${POSTGRES_PASSWORD:-infra}
+      PGCLIENTENCODING: UTF8
+    volumes:
+      - ./data:/data:ro
+      - ./scripts:/scripts:ro
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  pgdata:

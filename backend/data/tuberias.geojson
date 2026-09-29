@@ -1,0 +1,126 @@
+{
+ "type": "FeatureCollection",
+ "name": "tuberias",
+ "features": [
+  {
+   "type": "Feature",
+   "properties": {
+    "codigo": "AG-220",
+    "tipo": "agua",
+    "diametro_mm": 160,
+    "material": "PVC",
+    "profundidad_m": 1.2
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -77.0323963,
+      -12.046282
+     ],
+     [
+      -77.0301,
+      -12.046282
+     ],
+     [
+      -77.0278037,
+      -12.046282
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "codigo": "DS-105",
+    "tipo": "desagüe",
+    "diametro_mm": 250,
+    "material": "Concreto",
+    "profundidad_m": 2.5
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -77.0302653,
+      -12.0480966
+     ],
+     [
+      -77.0302653,
+      -12.0467492
+     ],
+     [
+      -77.0302378,
+      -12.0458508
+     ],
+     [
+      -77.0301919,
+      -12.0445034
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "codigo": "GS-031",
+    "tipo": "gas",
+    "diametro_mm": 63,
+    "material": "PEAD",
+    "profundidad_m": 0.8
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -77.0310185,
+      -12.0460305
+     ],
+     [
+      -77.0302837,
+      -12.0460305
+     ],
+     [
+      -77.0301459,
+      -12.0454915
+     ],
+     [
+      -77.0300541,
+      -12.0454915
+     ],
+     [
+      -77.0299163,
+      -12.0460305
+     ],
+     [
+      -77.0291815,
+      -12.0460305
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "codigo": "EL-012",
+    "tipo": "eléctrico",
+    "diametro_mm": null,
+    "material": "Cobre",
+    "profundidad_m": 0.9
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -77.0319371,
+      -12.0489949
+     ],
+     [
+      -77.0282629,
+      -12.0488153
+     ]
+    ]
+   }
+  }
+ ]
+}

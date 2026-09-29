@@ -1,0 +1,87 @@
+{
+  "expo": {
+    "name": "AR Infra Lite",
+    "slug": "ar-infra-lite",
+    "scheme": "arinfralite",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "ios": {
+      "bundleIdentifier": "com.apphydro.arinfralite",
+      "supportsTablet": false,
+      "requireFullScreen": true,
+      "infoPlist": {
+        "NSCameraUsageDescription": "La cámara se usa para mostrar en realidad aumentada los sensores y tuberías cercanos.",
+        "NSLocationWhenInUseUsageDescription": "La ubicación se usa para descargar y situar los activos y tuberías que tienes alrededor.",
+        "UIRequiredDeviceCapabilities": [
+          "arkit"
+        ],
+        "ITSAppUsesNonExemptEncryption": false,
+        "NSMicrophoneUsageDescription": "La app no graba audio. ViroReact declara este permiso por su función de grabación de vídeo, que no se usa.",
+        "NSPhotoLibraryUsageDescription": "La app no accede a tus fotos. ViroReact declara este permiso por su función de capturas, que no se usa.",
+        "NSPhotoLibraryAddUsageDescription": "La app no guarda fotos. ViroReact declara este permiso por su función de capturas, que no se usa."
+      }
+    },
+    "android": {
+      "package": "com.apphydro.arinfralite",
+      "adaptiveIcon": {
+        "backgroundColor": "#E6F4FE",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "permissions": [
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.ACCESS_COARSE_LOCATION"
+      ],
+      "blockedPermissions": [
+        "android.permission.RECORD_AUDIO",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE",
+        "android.permission.NFC",
+        "android.permission.VIBRATE",
+        "android.permission.ACCESS_BACKGROUND_LOCATION",
+        "com.oculus.permission.EYE_TRACKING"
+      ]
+    },
+    "plugins": [
+      "expo-dev-client",
+      [
+        "@reactvision/react-viro",
+        {
+          "provider": "none",
+          "ios": {
+            "cameraUsagePermission": "La cámara se usa para mostrar en realidad aumentada los sensores y tuberías cercanos.",
+            "locationUsagePermission": "La ubicación se usa para descargar y situar los activos y tuberías que tienes alrededor."
+          },
+          "android": {
+            "xRMode": [
+              "AR"
+            ]
+          }
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "La ubicación se usa para descargar y situar los activos y tuberías que tienes alrededor.",
+          "locationAlwaysAndWhenInUsePermission": false,
+          "locationAlwaysPermission": false,
+          "motionUsagePermission": false
+        }
+      ],
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "deploymentTarget": "17.0"
+          },
+          "android": {
+            "minSdkVersion": 24
+          }
+        }
+      ]
+    ]
+  }
+}
